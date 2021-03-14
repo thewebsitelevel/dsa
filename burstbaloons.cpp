@@ -1,4 +1,4 @@
-
+int store[1000][1000];
 class Solution {
 public:
     
