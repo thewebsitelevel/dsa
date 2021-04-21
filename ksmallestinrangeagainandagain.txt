@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define int long long int
+
+int32_t main(){
+
+    int t;
+    cin>>t;
+    while(t--){
+        int n,q;
+        cin>>n>>q;
+        vector< pair<int, int>> range;
+
+        for(int i=0; i<n; i++){
+            int x,y;
+            cin>>x>>y;
+
+            range.push_back({x,y});
+        }
+
+        sort(range.begin(), range.end());
+
+        int idx=0;
+
+        for(int i=1; i<range.size(); i++){
+            if(range[idx].second >= range[i].first){
+                range[idx].second = max(range[idx].second, range[i].second);
+            }else{
+                idx++;
+                range[idx]=range[i];
+            }
+        }
+        
+        for(int i=0; i<q; i++){
+            int ans=-1;
+            int k;
+            cin>>k;
+
+            for(int i=0; i<=idx; i++){
+                if((range[i].second- range[i].first+1) >=k){
+                    ans= range[i].first +k-1;
+                    break;
+                }else{
+                    k=k- (range[i].second - range[i].first+1);
+                }
+                
+            }
+            cout<<ans<<endl;
+        }
+    }
+    return 0;
+}
+
+
+
